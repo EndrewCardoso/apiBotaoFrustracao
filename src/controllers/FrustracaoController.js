@@ -5,14 +5,15 @@ module.exports = {
         let content = {error:'', result:{}};
 
         let nome = req.body.parNome;
-        let numCpf = req.body.parCpf;
+        let numCpf = req.body.cpf;
         let tema = req.body.parTema;
         let pergunta = req.body.parPergunta;
-        let resposta = req.body.parResposta;
-        let tempoEmSeg = req.body.parSegundos;
+        let resposta = req.body.respostaMesclada;
+        let nivelDificuldade = req.body.parDificuldade;
+        let tempoEmSeg = req.body.contador;
         
         if (nome) {
-            let frustracaoId = frustracaoModel.save(nome, numCpf, tema, pergunta, resposta, tempoEmSeg);
+            let frustracaoId = frustracaoModel.save(nome, numCpf, tema, pergunta, resposta, nivelDificuldade, tempoEmSeg);
             content.result = {
                 id: frustracaoId,
                 nome,
@@ -20,11 +21,12 @@ module.exports = {
                 tema,
                 pergunta,
                 resposta,
+                nivelDificuldade,
                 tempoEmSeg
             }
         }
         else{
-            content.error = 'Não foi possível encontrar dados.';
+            content.error = 'Não há dados a serem salvos.';
         }
 
         res.json(content);
