@@ -7,18 +7,20 @@ module.exports = {
         let nome = req.body.parNome;
         let numCpf = req.body.cpf;
         let tema = req.body.parTema;
+        let perguntaId = req.body.parPerguntaId;
         let pergunta = req.body.parPergunta;
         let resposta = req.body.respostaMesclada;
         let nivelDificuldade = req.body.parDificuldade;
         let tempoEmSeg = req.body.contador;
         
         if (nome) {
-            let frustracaoId = frustracaoModel.save(nome, numCpf, tema, pergunta, resposta, nivelDificuldade, tempoEmSeg);
+            let frustracaoId = frustracaoModel.save(nome, numCpf, tema, perguntaId, pergunta, resposta, nivelDificuldade, tempoEmSeg);
             content.result = {
                 id: frustracaoId,
                 nome,
                 numCpf,
                 tema,
+                perguntaId,
                 pergunta,
                 resposta,
                 nivelDificuldade,
